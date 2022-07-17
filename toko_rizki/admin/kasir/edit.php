@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TOKO RIZKI</title>
+</head>
+<body>
+<center>
+ 
+	<h2>CRUD DATA MAHASISWA</h2>
+	<br/>
+	<a href="index.php">KEMBALI</a>
+	<br/>
+	<br/>
+	<h3>EDIT DATA MAHASISWA</h3>
+ 
+	<?php
+	include '../../koneksi.php';
+	$id = $_GET['id'];
+	$data = mysqli_query($koneksi,"select * from kasir where id='$id'");
+	while($d = mysqli_fetch_array($data)){
+		?>
+		<form method="post" action="update.php">
+			<table>
+				<tr>			
+					<td>KODE KAISR</td>
+					<td>
+						<input type="hidden" name="id" value="<?php echo $d['id']; ?>">
+						<input type="number" name="kode_kasir" value="<?php echo $d['kode_kasir']; ?>">
+					</td>
+				</tr>
+				<tr>
+					<td>NAMA KASIR</td>
+					<td><input type="text" name="nama_kasir" value="<?php echo $d['nama_kasir']; ?>"></td>
+				</tr>
+				<tr>
+					<td>ALAMAT KASIR</td>
+					<td><input type="text" name="alamat_kasir" value="<?php echo $d['alamat_kasir']; ?>"></td>
+				</tr>
+				<tr>
+					<td>NOMOR KASIR</td>
+					<td><input type="number" name="no_hpkasir" value="<?php echo $d['no_hpkasir']; ?>"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="SIMPAN"></td>
+				</tr>		
+			</table>
+		</form>
+		<?php 
+	}
+	?>
+</center>
+</body>
+</html>
